@@ -93,10 +93,16 @@
 }
 
 - (BOOL)isIOS:(NSString *)OSKey {
-    return [OSKey hasPrefix:@"iOS"];
+    return [OSKey containsString:@"iOS"];
 }
 
 - (NSString *)versionFromOSKey:(NSString *)OSKey {
+    NSRegularExpression *regEx = [NSRegularExpression regularExpressionWithPattern:@"(?:\\d+-?)+" options:NSRegularExpressionCaseInsensitive error:NULL];
+    NSTextCheckingResult *newSearchString = [regEx firstMatchInString:OSKey options:0 range:NSMakeRange(0, [OSKey length])];
+    NSString *OSKeyVersionXcodeGte101 = [OSKey substringWithRange:newSearchString.range];
+    if (![OSKeyVersionXcodeGte101 isEqualToString:@""]) {
+        return [OSKeyVersionXcodeGte101 stringByReplacingOccurrencesOfString:@"-" withString:@"."];
+    }
     return [OSKey componentsSeparatedByString:@" "][1];
 }
 
