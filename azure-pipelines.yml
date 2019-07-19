@@ -1,0 +1,50 @@
+jobs:
+
+- job:
+  pool:
+    vmImage: 'macOS-10.14'
+  
+  steps:
+
+  - script: ls -al /Applications/
+    displayName: "Contents of /Applications"
+
+  - script: |
+      sudo xcode-select --switch "/Applications/Xcode_10.2.1.app/Contents/Developer"
+    displayName: "Select Xcode 10.2.1"
+
+  - script: xcodebuild -version
+    displayName: "Version of xcodebuild"
+  
+  - script: |
+      git clone -b master https://$(GitHubAccessToken):x-oauth-basic@github.com/xamarinhq/calabash-codesign.git ../calabash-codesign
+    displayName: "Clone calabash-codesign repo"
+
+  - script: |
+      git clone -b develop https://$(GitHubAccessToken):x-oauth-basic@github.com/calabash/run_loop.git ../run_loop
+    displayName: "Clone run_loop repo"
+
+  - script: |
+      ../calabash-codesign/apple/create-keychain.sh
+    displayName: "Run keychain"
+
+  - script: bundle config local.run_loop ../run_loop
+    displayName: "Bundle uses local run-loop gem sources"
+
+  - script: bundle install
+    displayName: "Bundle install"
+
+  - script: make frameworks
+    displayName: "Make frameworks"
+
+  - script: make unit-tests
+    displayName: "Make unit-tests"
+
+  - script: make integration-tests
+    displayName: "Make integration-tests"
+
+  - script: make build
+    displayName: "Make build"
+
+  - script: make rspec
+    displayName: "Make rspec"
