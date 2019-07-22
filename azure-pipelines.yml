@@ -21,15 +21,12 @@ jobs:
     displayName: "Clone calabash-codesign repo"
 
   - script: |
-      git clone -b develop https://$(GitHubAccessToken):x-oauth-basic@github.com/calabash/run_loop.git ../run_loop
-    displayName: "Clone run_loop repo"
+      git clone https://github.com/calabash/FBSimulatorControl.git ../FBSimulatorControl
+    displayName: "Clone FBSimulatorControl repo"
 
   - script: |
       ../calabash-codesign/apple/create-keychain.sh
     displayName: "Run keychain"
-
-  - script: bundle config local.run_loop ../run_loop
-    displayName: "Bundle uses local run-loop gem sources"
 
   - script: bundle install
     displayName: "Bundle install"
