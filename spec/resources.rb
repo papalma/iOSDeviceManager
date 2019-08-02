@@ -32,7 +32,7 @@ module IDM
 
   def self.shell(args)
     cmd = [Resources.instance.idm] + args
-    RunLoop::Shell.run_shell_command(cmd, {log_cmd: true, timeout: 180})
+    RunLoop::Shell.run_shell_command(cmd, {log_cmd: true, timeout: 280})
   end
 
   class Resources
