@@ -83,6 +83,7 @@ module IDM
     end
 
     def random_iphone
+      RunLoop.log_debug(simctl.simulators)
       simctl.simulators.select do |sim|
         sim.name[/iPhone/] &&
           sim.version >= RunLoop::Version.new("10.0") &&

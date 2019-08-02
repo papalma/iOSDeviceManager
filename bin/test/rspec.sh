@@ -28,9 +28,4 @@ fi
 
 banner "Rspec tests"
 
-if [ "$DEVICE" == "1" ]; then
-  exec bundle exec rspec --pattern "spec/*device*_spec.rb"
-else
-  exec bundle exec rspec --exclude-pattern "spec/*device*_spec.rb"
-fi
-
+DEBUG=1 exec bundle exec rspec spec/launch_simulator_spec.rb
