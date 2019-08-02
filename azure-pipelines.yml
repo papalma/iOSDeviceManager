@@ -46,7 +46,7 @@ jobs:
     displayName: 'Publish Artifact: Calabash logs'
     inputs:
       PathtoPublish: '/Users/vsts/.calabash'
-      ArtifactName: 'Calabash logs'
+      ArtifactName: 'Calabash logs (Xcode $(XCODE_VERSION))'
     condition: always()
 
   - task: PublishTestResults@2
