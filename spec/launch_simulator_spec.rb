@@ -31,6 +31,8 @@ describe "launch-simulator" do
     hash = IDM.shell(args)
     expect(hash[:exit_status]).to be == IDM.exit_status(:success)
 
+    sleep(15)
+
     # Other simulator is running.
     core_sim = RunLoop::CoreSimulator.new(other_simulator, app)
     hash = core_sim.send(:running_simulator_details)
