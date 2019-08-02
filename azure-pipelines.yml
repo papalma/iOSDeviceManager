@@ -45,7 +45,7 @@ jobs:
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: Calabash logs'
     inputs:
-      PathtoPublish: '~/.calabash'
+      PathtoPublish: '/Users/vsts/.calabash'
       ArtifactName: 'Calabash logs'
     condition: always()
 
