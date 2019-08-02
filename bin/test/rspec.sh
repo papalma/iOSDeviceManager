@@ -28,4 +28,4 @@ fi
 
 banner "Rspec tests"
 
-DEBUG=1 exec bundle exec rspec spec/launch_simulator_spec.rb
+DEBUG=1 exec bundle exec rspec
