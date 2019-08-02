@@ -33,11 +33,11 @@ jobs:
   - script: make build
     displayName: "Make build"
 
-  - script: make unit-tests
-    displayName: "Make unit-tests"
+  # - script: make unit-tests
+  #   displayName: "Make unit-tests"
 
-  - script: make integration-tests
-    displayName: "Make integration-tests"
+  # - script: make integration-tests
+  #   displayName: "Make integration-tests"
 
   - script: make rspec
     displayName: "Make rspec"
