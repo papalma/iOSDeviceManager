@@ -39,7 +39,7 @@ jobs:
   # - script: make integration-tests
   #   displayName: "Make integration-tests"
 
-  - script: make rspec
+  - script: DEBUG=1 make rspec
     displayName: "Make rspec"
 
   - task: PublishBuildArtifacts@1
