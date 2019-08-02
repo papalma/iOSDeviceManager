@@ -42,6 +42,13 @@ jobs:
   - script: make rspec
     displayName: "Make rspec"
 
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Calabash logs'
+    inputs:
+      PathtoPublish: '~/.calabash'
+      ArtifactName: 'Calabash logs'
+    condition: always()
+
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
     inputs:
