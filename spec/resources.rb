@@ -87,7 +87,7 @@ module IDM
       simctl.simulators.select do |sim|
         sim.name[/iPhone/] &&
           sim.version >= RunLoop::Version.new("10.0") &&
-          sim.udid != default_simulator.udid
+          sim.udid == "B896540D-1E0E-45F7-8BD0-D4DE8D7A5EE6"
       end.sample
     end
 
