@@ -8,6 +8,8 @@ describe "launch-simulator" do
 
   before do
     RunLoop::CoreSimulator.quit_simulator
+    cmd = "run-loop simctl manage-processes"
+    RunLoop::Shell.run_shell_command(cmd, {log_cmd: true, timeout: 180})
   end
 
   it "launches the simulator indicated by --device-id" do
@@ -30,8 +32,6 @@ describe "launch-simulator" do
     args = ["launch-simulator", "--device-id", other_simulator.udid]
     hash = IDM.shell(args)
     expect(hash[:exit_status]).to be == IDM.exit_status(:success)
-
-    sleep(15)
 
     # Other simulator is running.
     core_sim = RunLoop::CoreSimulator.new(other_simulator, app)
